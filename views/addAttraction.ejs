@@ -1,0 +1,126 @@
+<%- include('partials/header') -%>
+<link rel="stylesheet" href="/css/createAttractions.css" />
+
+
+
+            <!--WE WILL NEED THIS EVENTUALLY. This shows us how to upload an image to our database-->
+            <!-- <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+              <div class="mb-3">
+                  <label for="title" class="form-label">Attraction</label>
+                  <input type="text" class="form-control" id="title" name="title">
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="imgUpload" class="form-label">Image</label>
+                <input type="file" class="form-control" id="imageUpload" name="file">
+              </div>
+
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="zipcode" class="form-label">Zipcode</label>
+                <textarea class="form-control" id="zipcode" name="zipcode"></textarea>
+              </div>
+
+
+              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+            </form>
+          </div> -->
+
+            <!--NAV BAR-->
+
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+    <div class="container">
+        <a href="#" class="navbar-brand">Attraction Finder</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="profile" class="nav-link">Profile</a>
+            </li>
+                <li class="nav-item">
+                    <a href="searchActivity" class="nav-link">Search for attraction</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="addAttraction" class="nav-link">Add attraction</a>
+                </li> -->
+                <li class="nav-item">
+                  <a href="/logout" class="nav-link">Log out</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+          <div id="booking" class="section">
+            <div class="section-center">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-7 col-md-push-5">
+                    <div class="booking-cta">
+                      <h1>Add An Attraction</h1>
+                      <p>Nobody knows the city better the the people who actually live in it. Know an attraction you might think others will enjoy? add it to our collection so others can interact with it.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-md-pull-7">
+                    <div class="booking-form">
+                      <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+                        <div class="form-group">
+                          <span class="form-label">Attraction Name</span>
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Enter a name for your attraction">
+                        </div>
+                        <div class="row">
+                          <div class="mb-1">
+                            <div class="form-group">
+                              <span for="address" class="form-label">Address</span>
+                              <textarea class="form-control" id="address" name="address"></textarea>
+                            </div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="form-group">
+                              <span for="imgUpload" class="form-label">Upload Image</span>
+                              <input type="file" class="form-control" id="imageUpload" name="file" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="mb-1">
+                            <div class="form-group">
+                              <span for="description" class="form-label">Description</span>
+                              <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <span for="zipcode" class="form-label">Zipcode</span>
+                              <input class="form-control" id="zipcode" name="zipcode" placeholder="ZipCode">
+        
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-btn">
+                          <button class="submit-btn" type="submit" value="Upload">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+<%- include('partials/footer') -%>

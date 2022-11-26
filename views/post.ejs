@@ -1,0 +1,155 @@
+<%- include('partials/header') -%>
+<link
+href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="/css/map.css" />
+
+
+      <!--NAV BAR-->
+
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 ">
+        <div class="container">
+            <a href="#" class="navbar-brand">Attraction Finder</a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
+    
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <!-- <li class="nav-item">
+                        <a href="#learn" class="nav-link">Activities</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a href="budget" class="nav-link">Budget</a>
+                    </li> -->
+                    <li class="nav-item">
+                      <a href="/searchActivity" class="nav-link">Search for attraction</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+      <div class="row  mt-5">
+
+        <div class="col-6">
+
+          <img class="img-fluid" src="<%= post.image%>">
+
+          <div class="row justify-content-between">
+            <form
+            class="col-1 mt-5"
+            action="/post/completeAttraction/<%= post.id %>?_method=PUT"
+            method="POST"
+            >
+            <button class="btn btn-primary " type="submit">Complete</button>
+          </form>
+  
+          <%if(post.user == user.id){ %>
+            <form
+              action="/post/deletePost/<%= post.id %>?_method=DELETE"
+              method="POST"
+              class="col-3 mt-5"
+            >
+              <button class="btn btn-primary" type="submit">Delete</button>
+            </form>
+            <%}%>
+          </div>
+
+        </div>
+
+        <div class="col-6">
+          <div id="map">
+
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+
+    <section class="container mt-5" id="address">
+      <h3>Attraction: <%= post.Attraction%></h3>
+      <p data-latitude=" <%= post.Latitude%>" data-longitude="<%= post.Longitude%>" >Address: <%= post.Address%></p>
+      <p class="w-50%">Description: <%= post.Description%></p>
+    </section>
+
+    
+
+
+<!-- <div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-6">
+      <h2><%= post.title %></h2>
+      <img class="img-fluid" src="<%= post.image%>" />
+      <div class="row justify-content-between">
+
+
+        <form
+          class="col-1"
+          action="/post/completeAttraction/<%= post.id %>?_method=PUT"
+          method="POST"
+        >
+          <button class="btn btn-primary bi bi-check-circle" type="submit"></button>
+        </form>
+
+        <h3 class="col-3">Likes: <%= post.likes %></h3>
+
+        <%if(post.user == user.id){ %>
+        <form
+          action="/post/deletePost/<%= post.id %>?_method=DELETE"
+          method="POST"
+          class="col-3"
+        >
+          <button class="btn btn-primary bi bi-trash" type="submit"></button>
+        </form>
+        <%}%>
+
+
+      </div>
+    </div>
+    <div class="col-3 mt-5">
+      <p><%= post.caption %></p>
+    </div> -->
+
+    <!-- <form action="/comment/createComment/<%= post.id %>" method="POST">
+      <input placeholder="Enter comment" name="text">
+      <button>Submit</button>
+    </form> -->
+
+
+</div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+
+<script>
+  let works = document.querySelector('#address')
+
+  let latitude = works.childNodes[3].dataset.latitude
+  let longitude = works.childNodes[3].dataset.longitude
+
+
+
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoiYWxleHNhbjE5IiwiYSI6ImNsYXlmdWxlMTBiYnEzd3J6eHcwbHQ5M2YifQ.4Kzuy0Ca1z1at5g8G6R1mA'
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [longitude, latitude],
+    zoom: 16,
+  })
+
+  // Add marker icon
+  const marker = new mapboxgl.Marker()
+  .setLngLat([longitude, latitude])
+  .addTo(map);
+
+    // Add zoom and rotation controls to the map.
+  map.addControl(new mapboxgl.NavigationControl());
+</script>
+
+<%- include('partials/footer') -%>

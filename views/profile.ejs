@@ -1,0 +1,84 @@
+<%- include('partials/header') -%>
+    <link rel="stylesheet" href="/css/style.css" />
+
+          
+
+  <!--NAV BAR-->
+
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+    <div class="container">
+        <a href="#" class="navbar-brand">Attraction Finder</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <!-- <li class="nav-item">
+                    <a href="#learn" class="nav-link">Activities</a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="searchActivity" class="nav-link">Search for attraction</a>
+                </li>
+                <li class="nav-item">
+                    <a href="addAttraction" class="nav-link">Add attraction</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/logout" class="nav-link">Log out</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!--Background Video-->
+    <div class="hero">
+
+      <video autoplay loop muted plays-inline class="back-Video">
+        <source src="imgs/video.mp4" type="video/mp4">
+      </video> 
+
+
+      <div class="content">
+        <h1>Find local Attractions</h1>
+        <a href="searchActivity">Explore</a>
+      </div>
+    </div>
+
+
+<!--Saved attractions-->
+
+<section class="orderDisplay p-0">
+    <div class="container">
+      <div class="row text-center g-0">
+
+
+        <% for(let i = 0; i < posts.length; i++) {%>
+        
+
+            <div class="card" style="width: 35rem;">
+              <img src=<%= posts[i].image %> class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= posts[i].Attraction %></h5>
+                <p class="card-text"><%= posts[i].Address %></p>
+                <p class="card-text text-truncate"><%= posts[i].Description %></p>
+  
+                <% if (posts[i].Complete === "true") { %>
+                  <p id="orderComplete">Attraction Completed</p>
+                  <%} else { %>
+                  <p id="orderPending">Attraction Pending </p>
+                  <% } %>
+
+                  <a href="/post/<%= posts[i]._id%>"><button type="button" class="btn btn-info">Info</button></a>      
+ 
+              </div>
+            </div>
+    
+          
+      <% } %>
+  
+
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') -%>
