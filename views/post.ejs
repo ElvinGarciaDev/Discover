@@ -8,7 +8,6 @@ rel="stylesheet"
 
 
       <!--NAV BAR-->
-
       <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 ">
         <div class="container">
             <a href="#" class="navbar-brand">Attraction Finder</a>
@@ -34,42 +33,67 @@ rel="stylesheet"
         </div>
     </nav>
 
+    <!--Section with Attraction photo and map-->
     <div class="container">
       <div class="row  mt-5">
 
-        <div class="col-6">
+        <div class="col-md">
 
           <img class="img-fluid" src="<%= post.image%>">
 
           <div class="row justify-content-between">
-            <form
-            class="col-1 mt-5"
-            action="/post/completeAttraction/<%= post.id %>?_method=PUT"
-            method="POST"
-            >
-            <button class="btn btn-primary " type="submit">Complete</button>
-          </form>
-  
+
+            <%# IF the Review property in MongoDB is empty and the Complete Property is set to true, it means the user completed the attraction and needs to give it a review %>
+            <% if (post.Review == "" && post.Complete == 'true') { %>
+              
+              <form action="/post/reviewAttraction/<%= post.id %>?_method=PUT" method="POST"> 
+                <select class="form-select " name="star">
+                  <option selected>Review Attration</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                  <option value="4">Four</option>
+                  <option value="5">Five</option>
+                </select>
+
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="review" placeholder="Give the Attraction a review"></textarea>
+                <button class="btn btn-primary " type="submit">Submitt Review</button>
+              </form>
+              <% } %>
+
+          <%# If the Complete property in MongoDB is false, allow the user the option to click the checkmark and mark it as complete. This option only shows up when an attraction is not completed  %>
+          <%  if (post.Complete == 'false') { %>
+              <form
+              class="col-3 mt-2"
+              action="/post/completeAttraction/<%= post.id %>?_method=PUT"
+              method="POST"
+              >
+              <button class="btn btn-primary " type="submit"><i class="bi bi-check-circle"></i></button>
+            </form>
+          <% } %>
+
+          <%# Always give the user the option to delete an attraction %>
           <%if(post.user == user.id){ %>
             <form
+            class="col-2 mt-2"
               action="/post/deletePost/<%= post.id %>?_method=DELETE"
               method="POST"
-              class="col-3 mt-5"
             >
-              <button class="btn btn-primary" type="submit">Delete</button>
+              <button class="btn btn-primary btnDelete" type="submit"><i class="bi bi-trash"></i></button>
             </form>
             <%}%>
+
           </div>
 
         </div>
 
-        <div class="col-6">
+        <!--Div to place the map in-->
+        <div class="col-md" >
           <div id="map">
 
           </div>
         </div>
 
-        
       </div>
     </div>
 
@@ -77,50 +101,17 @@ rel="stylesheet"
       <h3>Attraction: <%= post.Attraction%></h3>
       <p data-latitude=" <%= post.Latitude%>" data-longitude="<%= post.Longitude%>" >Address: <%= post.Address%></p>
       <p class="w-50%">Description: <%= post.Description%></p>
+
+      <%# If the Review property in MongoDB is not empty it means that you have already completed the attraction and gave it a review. So we'll share that review here %>
+      <%  if (post.Review != '') { %>
+        <p class="w-50%">Review: <%= post.Review%></p>
+        <p class="w-50%">Rating: <%= post.Star%>/5</p>
+      <% } %>
+
+
     </section>
 
     
-
-
-<!-- <div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row justify-content-between">
-
-
-        <form
-          class="col-1"
-          action="/post/completeAttraction/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary bi bi-check-circle" type="submit"></button>
-        </form>
-
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
-
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary bi bi-trash" type="submit"></button>
-        </form>
-        <%}%>
-
-
-      </div>
-    </div>
-    <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
-    </div> -->
-
-    <!-- <form action="/comment/createComment/<%= post.id %>" method="POST">
-      <input placeholder="Enter comment" name="text">
-      <button>Submit</button>
-    </form> -->
 
 
 </div>

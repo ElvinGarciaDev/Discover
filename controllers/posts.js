@@ -91,6 +91,23 @@ module.exports = {
     }
   },
 
+  //When someone completes an attraction they will get the chance to review that attraction
+  reviewAttraction: async (req,res) => {
+
+    console.log(req.body, "hello")
+    try {
+      await Comment.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
+        { _id: req.params.id },
+        {
+          $set: { Review: req.body.review, Star: req.body.star}, // Update the empty Review string in the DB to what the users review is. And also update the star field in mongoDB
+        }
+      );
+      res.redirect(`/post/${req.params.id}`); // Redirect back to the same post
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   // User has the ability to mark an attraction as complete by clicking the check mark
   completeAttraction: async (req, res) => {
     try {
