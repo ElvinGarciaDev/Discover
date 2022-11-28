@@ -26,8 +26,11 @@ const AttractionSchema = new mongoose.Schema({
   },
   Review: { // We'll use this for reviewing attractions once it's marked as complete
     type: String,
-    required: true,
-    default: ' '
+    default: ''
+  },
+  Star: { // We'll use this for giving attractions a start raiting once it's marked as complete
+    type: String,
+    default: "0"
   },
   user: {
     type: mongoose.Schema.Types.ObjectId, // This is how we tie an attraction to a specific user
