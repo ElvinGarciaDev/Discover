@@ -1,11 +1,196 @@
 <%- include('partials/header') -%>
+<link rel="stylesheet" href="/css/homepage.css" />
 
-<main class="container">
+
+<!-- <main class="container">
     <div class="row justify-content-around mt-5">
         <a href="/login" class="col-3 btn btn-primary"> Login</a>
         <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
     </div>
-</main>
+</main> -->
+
+      <!--NAV BAR-->
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 ">
+        <div class="container">
+            <a href="#" class="navbar-brand">Discover</a>
     
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
+    
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/signup" class="nav-link">Sign Up</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+                <!--Search, image background-->
+                <div class="background-image">
+    
+                    <section class=" topSection content">
+                        <div class="container text-center">
+
+                            <h1 id="heading">Discover places near you</h1>
+                            <span id="action">This is the best guide of your city</span>
+                        
+                        </div>
+                    </section>
+                </div>
+
+
+    <!--Attractions you might find-->
+
+    <section class="p-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Attractions You Might Find</h2>
+
+            <div class="row g-3">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="/imgs/garden.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Isabella Stewart Gardner Museum</h5>
+                          <p class="card-text">A Venetian palace in the middle of Boston, Gardner's home is now a museum displaying her impressive, eclectic collection of European, American and Asian art.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="/imgs/common.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Boston Common</h5>
+                          <p class="card-text">The Boston Common is a public park in downtown Boston, Massachusetts. It is the oldest city park in the United States.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="/imgs/monument.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Bunker Hill Monument</h5>
+                          <p class="card-text">This 220-foot granite tower commemorates the Patriots' undaunted bravery in defeat at the 1775 Battle of Bunker Hill.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+        <!-- Learn React. Also using grid-->
+        <section id="learn" class="p-5 bg-dark text-light">
+            <div class="container">
+                <div class="row align-items-center justify-content-betweem">
+                    <div class="col-md p-5">
+                        <h2>Explore the City</h2>
+                        <p class="lead">Are you new to a city or just visiting? This website helps you find local attractions that you can visit.</p>
+                        <p>By just entering your zip code you'll receive a list of attractions near you. You can bookmark attractions to keep track of the ones you plan to visit. No one knows the city like the people who actually live it in, so users also have the option to upload their own attractions so others can interact with them.</p>
+                        <a href="/signup" class="btn btn-light-mt3 text-light">
+                            <i class="bi bi-chevron-right"></i>Sign Up</a>
+                    </div>
+                    <div class="col-md">
+                        <img src="/imgs/boston.jpeg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+         <!-- Question Accordion -->
+         <section id="questions" class="p-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+                <div class="accordion accordion-flush" id="questions">
+
+                    <!--ITEM ONE-->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-one">
+                          Is my information private?
+                        </button>
+                      </h2>
+                      <div id="question-one" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#questions">
+                        <div class="accordion-body">
+                            Yes, all your information will be private. While creating the application, protecting our user's privacy was on top of the list. We can assure you that only you will be able to interact with your bookmarked attractions. Only you have the access to delete or mark as complete bookmarks from your profile. 
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--ITEM TWO-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-two">
+                            What countries does this application support?
+                          </button>
+                        </h2>
+                        <div id="question-two" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#questions">
+                          <div class="accordion-body">
+                              The U.S is currently the only conutry that we support, but we do have plans to expand to other countries.
+                          </div>
+                        </div>
+                      </div>
+
+                    <!--ITEM THREE-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-three">
+                            How can I add an attraction for others to see?
+                          </button>
+                        </h2>
+                        <div id="question-three" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#questions">
+                          <div class="accordion-body">
+                              User's have the option to upload their own attraction. When uploading an attraction you'll be asked to enter a descriptive name for the attraction, an address, upload an image of the attraction, a description, and finally the zip code of where the attraction is located. Once submitted, any users who search for an attraction with the same zip code will be presented with the user-created attraction.
+                          </div>
+                        </div>
+                    </div>
+
+                    <!--ITEM FOUR-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-four">
+                            How can I interact with attractions i've bookmarked?
+                          </button>
+                        </h2>
+                        <div id="question-four" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#questions">
+                          <div class="accordion-body">
+                              After you've bookmarked an attraction it's added to your profile. You can then delete the attraction or mark it as complete. If bookmarked as complete, you'll be presented with a review field where you can rate the attraction.
+                          </div>
+                        </div>
+                    </div>
+
+                    <!--ITEM FIVE-->
+                    <!-- <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-five">
+                            Do you help me find a job?
+                          </button>
+                        </h2>
+                        <div id="question-five" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#questions">
+                          <div class="accordion-body">
+                              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur numquam beatae rerum impedit adipisci facere delectus exercitationem voluptatum eos asperiores ut culpa accusantium reprehenderit, dolore quibusdam illo, laboriosam animi, pariatur odit ad necessitatibus. At excepturi animi odio? Accusamus culpa ullam quam assumenda porro facere quisquam consequatur nostrum impedit? Quod, modi.
+                          </div>
+                        </div>
+                    </div> -->
+
+                  </div>
+            </div>
+        </section>
+
+        <!--FOOTER-->
+        <footer class="p-5 bg-dark text-white text-center position-relative">
+            <div class="container">
+                <p class="lead">Copyright &copy; 2022 Elvin Garcia</p>
+                <a class="position-absolute bottom-0 end-0 p-5" href="#">
+                    <i class="bi bi-arrow-up-circle h1"></i>
+                </a>
+            </div>
+        </footer>
 
 <%- include('partials/footer') -%>
