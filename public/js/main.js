@@ -48,7 +48,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "8c65eecf0fmsh69d4bfdbf3a8bd3p1478f0jsnd22316cdad37",
+            "94482353a0msh26e052d5c89346dp1ca802jsnc1a21e5bf169",
           "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
         },
       }
