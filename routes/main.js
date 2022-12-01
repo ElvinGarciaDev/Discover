@@ -19,7 +19,7 @@ router.get("/addAttraction", ensureAuth, postsController.getAttraction); //Pass 
 // Go to the postsController and run the getAttraction method. This method tells it to render addAttraction.ejs
 
 // Show the Search for attraction page
-router.get("/searchActivity", ensureAuth, postsController.getSearchAttraction) //Pass in ensureAuth to make sure the user is logged in, 
+router.get("/searchAttraction", ensureAuth, postsController.getSearchAttraction) //Pass in ensureAuth to make sure the user is logged in, 
 // Go to the postsController and run the getSearchAttraction method. This method tells it to render SearchAttraction.ejs
 
 // When user enteres a zipcode, it sends a fetch to the travel-advisor api and also to our own database. It finds any attractions uploaded by users that match the zipcode
@@ -29,6 +29,9 @@ router.get("/bookmarkAttraction/:zipcode", ensureAuth, bookmarkAttractionControl
 
 // When someone wants to save an attraction
 router.post("/addAttraction",ensureAuth, bookmarkAttractionController.bookmarkAttraction)
+
+// When a user goes to the user tries to access the completed attractions page
+router.get("/completedAttractions", ensureAuth, postsController.getCompletedAttractions)
 
 
 // Passport routes
