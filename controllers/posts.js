@@ -19,16 +19,30 @@ module.exports = {
     res.render("searchAttraction.ejs")
   },
 
-
   // Render the profile page. Go to the database and see if user has any bookmarked attractions. If so, send it to the profile.ejs to render
   getProfile: async (req, res) => {
     try {
-      const posts = await Comment.find({ user: req.user.id }); // user: req.user.id will only show the attractions that the user has saved
+      const posts = await Comment.find({ user: req.user.id, Complete: "false" }); // user: req.user.id will only show the attractions that the user has saved. On the profile page, we only want to show attractions that have not been completed
 
 
       res.render("profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
+    }
+  },
+
+  // When a user tried to access the completed Attractions page, go to the database grab all completed attractions by the logged in user and send it to the ejs
+  getCompletedAttractions: async (req, res) => {
+
+    try {
+
+      // Go to the database, grab all the completed attractions by the logged in user
+      const posts = await Comment.find({ user: req.user.id, Complete: "true" })
+
+      res.render("completedAttractions.ejs", {posts: posts, user: req.user})
+
+    } catch (error) {
+      
     }
   },
 

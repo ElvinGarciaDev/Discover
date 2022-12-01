@@ -5,7 +5,7 @@
 
   <!--NAV BAR-->
 
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 ">
     <div class="container">
         <a href="#" class="navbar-brand">Attraction Finder</a>
 
@@ -13,11 +13,11 @@
 
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
-                <!-- <li class="nav-item">
-                    <a href="#learn" class="nav-link">Activities</a>
-                </li> -->
                 <li class="nav-item">
-                    <a href="searchActivity" class="nav-link">Search for attraction</a>
+                    <a href="completedAttractions" class="nav-link">Completed attractions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="searchAttraction" class="nav-link">Search for attraction</a>
                 </li>
                 <li class="nav-item">
                     <a href="addAttraction" class="nav-link">Add attraction</a>
@@ -40,45 +40,58 @@
 
       <div class="content">
         <h1>Find local Attractions</h1>
-        <a href="searchActivity">Explore</a>
+        <a href="searchAttraction">Explore</a>
       </div>
     </div>
 
 
 <!--Saved attractions-->
 
-<section class="orderDisplay p-0">
-    <div class="container">
-      <div class="row text-center g-0">
+    <!--If there are no attractions, let the user know to add search for attractions and add them-->
+    <% if (posts.length == 0) { %>
+      <h1 class="pt-5 text-center">No attractions pending</h1>
+      <span class="pt-3 pb-3 text-center d-block">Bookmark attractions by going to the search page. Once an attraction has been bookmarked it will be displayed here</span>
+      <%} else { %>
 
+        <!-- Else, display the attractions the user has bookmarked-->
 
-        <% for(let i = 0; i < posts.length; i++) {%>
+        <section class="orderDisplay p-0">
+          <div class="container">
+            <div class="row text-center g-0">
+      
+              <h1 class="pt-5">Pending Attractions </h1>
+      
+      
+      
+              <% for(let i = 0; i < posts.length; i++) {%>
+              
+      
+                  <div class="card" style="width: 35rem;">
+                    <img src=<%= posts[i].image %> class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= posts[i].Attraction %></h5>
+                      <p class="card-text"><%= posts[i].Address %></p>
+                      <p class="card-text text-truncate"><%= posts[i].Description %></p>
         
-
-            <div class="card" style="width: 35rem;">
-              <img src=<%= posts[i].image %> class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title"><%= posts[i].Attraction %></h5>
-                <p class="card-text"><%= posts[i].Address %></p>
-                <p class="card-text text-truncate"><%= posts[i].Description %></p>
-  
-                <% if (posts[i].Complete === "true") { %>
-                  <p id="orderComplete">Attraction Completed</p>
-                  <%} else { %>
-                  <p id="orderPending">Attraction Pending </p>
-                  <% } %>
-
-                  <a href="/post/<%= posts[i]._id%>"><button type="button" class="btn btn-info">More Details</button></a>      
- 
-              </div>
-            </div>
-    
+                      <% if (posts[i].Complete === "true") { %>
+                        <p id="orderComplete">Attraction Completed</p>
+                        <%} else { %>
+                        <p id="orderPending">Attraction Pending </p>
+                        <% } %>
+      
+                        <a href="/post/<%= posts[i]._id%>"><button type="button" class="btn btn-info">More Details</button></a>      
+       
+                    </div>
+                  </div>
           
+                
+            <% } %>
+        
+      
+            </div>
+          </div>
+        </section>
       <% } %>
-  
 
-      </div>
-    </div>
-  </section>
 
 <%- include('partials/footer') -%>
