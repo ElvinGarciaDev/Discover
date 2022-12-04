@@ -1,0 +1,104 @@
+<%- include('partials/header') -%>
+<link rel="stylesheet" href="/css/updateAttraction.css" />
+
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 ">
+        <div class="container">
+            <a href="#" class="navbar-brand">Update user created Attraction</a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
+    
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/completedAttractions" class="nav-link">Completed attractions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/searchAttraction" class="nav-link">Search for attraction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/addAttraction" class="nav-link">Add attraction</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/logout" class="nav-link">Log out</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+    <!-- Main Site -->
+  <main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+           <div class="filter">
+               <a href="/addAttraction"><i class="bi bi-arrow-left"></i></i> Back to attractions</a>
+           </div>
+        </div>
+        <div class="form-title text-center">
+            <h2 class="text-dark">Update Attraction</h2>
+            <span class="text-light">Use the below form to Update an attraction you created</span>
+        </div>
+
+        <!-- add user form -->
+         <!-- form handling -->
+ <form id="update_user" action="/post/updateAttraction/<%= local.id %>?_method=PUT" method="POST">
+    <div class="new_user">
+        <div class="form-group">
+            <label for="Attraction" class="text-light">Attraction</label>
+            <input type="hidden" name="id" value="<%= user._id %>">
+            <input type="text" name="Attraction" value="<%= local.Attraction %>" >
+        </div>
+        <div class="form-group">
+            <label for="Address" class="text-light">Address</label>
+            <input type="text" name="Address" value="<%= local.Address %>">
+        </div>
+        <div class="form-group">
+            <label for="Description" class="text-light">Description</label>
+            <input type="text" name="Description" value="<%= local.Description %>">
+        </div>
+        <div class="form-group">
+            <label for="Zipcode" class="text-light">Zip code</label>
+            <input type="text" name="Zipcode" value="<%= local.Zipcode %>">
+        </div>
+
+
+        <!-- <div class="form-group">
+            <label for="gender" class="text-light">Gender</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="gender" value="Male" <%= user.gender == 'Male' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Male</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="gender" value="Female"  <%= user.gender == 'Female' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">Female</label>
+            </div>
+        </div> -->
+
+        <!-- <div class="form-group">
+            <label for="gender" class="text-light">Status</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-4" name="status" value="Active" <%= user.status == 'Active' ? 'checked' : '' %> >
+                <label for="radio-4" class="radio-label">Active</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-5" name="status" value="Inactive" <%= user.status == 'Inactive' ? 'checked' : '' %> >
+                <label for="radio-5" class="radio-label">Inactive</label>
+            </div>
+        </div> -->
+
+        <div class="form-group">
+            <button id="btn" type="submit" class="btn text-dark update">Save</button>
+        </div>
+
+    </div>
+</form>
+       
+    </div>
+</main>
+<!-- /Main Site -->
+
+<%- include('partials/footer') -%>

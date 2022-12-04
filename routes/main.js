@@ -18,6 +18,9 @@ router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/addAttraction", ensureAuth, postsController.getAttraction); //Pass in ensureAuth to make sure the user is logged in, 
 // Go to the postsController and run the getAttraction method. This method tells it to render addAttraction.ejs
 
+// When someone wants to update an attraction Show the updateAttraction page
+router.get("/updateAttraction/:id", ensureAuth, postsController.updateAttraction)
+
 // Show the Search for attraction page
 router.get("/searchAttraction", ensureAuth, postsController.getSearchAttraction) //Pass in ensureAuth to make sure the user is logged in, 
 // Go to the postsController and run the getSearchAttraction method. This method tells it to render SearchAttraction.ejs
