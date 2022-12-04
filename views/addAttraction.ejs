@@ -5,7 +5,7 @@
 
   <!--NAV BAR-->
 
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2">
     <div class="container">
         <a href="#" class="navbar-brand">Attraction Finder</a>
 
@@ -36,7 +36,7 @@
                 <div class="row">
                   <div class="col-md-7 col-md-push-5">
                     <div class="booking-cta">
-                      <h1>Add An Attraction</h1>
+                      <h1 id="headingLead">Add An Attraction</h1>
                       <p>Nobody knows the city better the the people who actually live in it. Know an attraction you might think others will enjoy? add it to our collection so others can interact with it.
                       </p>
                     </div>
@@ -88,9 +88,52 @@
             </div>
           </div>
 
+  <!--Attractions you've added-->
+    <!--If there the logged in user has not created any attractions, let the user know they can create attractions for others to interact with-->
+    <% if (local.length == 0) { %>
+      <section class="pt-5">
+        <div class="container">
+          <h1 class="pt-5 text-center">You have not created any attractions</h1>
+          <span class="pt-3 pb-3 text-center d-block">Know of any attractions in your area? Add them to our database so others can interact with it. </span>
+        </div>
+      </section>
+
+      <%} else { %>
+
+
+         <!-- Else, display the attractions the user has created/submitted to the database-->
+
+         <section class="orderDisplay p-0">
+          <div class="container">
+            <div class="row text-center g-0">
+      
+              <h1 class="pt-4">Attractions created</h1>
+              <span class="pt-3 pb-3 text-center d-block">Attractions you've created will be displayed here. Feel free to edit any fields on your attractions.</span>
+      
+              <% for(let i = 0; i < local.length; i++) {%>
+      
+                  <div class="card" style="width: 35rem;">
+                    <img src=<%= local[i].image %> class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= local[i].Attraction %></h5>
+                      <p class="card-text"><%= local[i].Address %></p>
+                      <p class="card-text"><%= local[i].Description %></p>
 
 
 
+                      <a href="/updateAttraction/<%= local[i].id%>"><button class="btn btn-primary btnDelete" type="button">Update</button></a>
 
+                    </div>
+                  </div>
+
+            <% } %>
+
+            </div>
+          </div>
+        </section>
+
+      <% } %>
+
+    
 
 <%- include('partials/footer') -%>

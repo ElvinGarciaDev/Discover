@@ -16,6 +16,9 @@ router.put("/reviewAttraction/:id", postsController.reviewAttraction); // When s
 
 router.put("/completeAttraction/:id", postsController.completeAttraction); // When a user click to mark the attraction as complete, run this method in the postsController
 
+router.put("/updateAttraction/:id", postsController.updateLocalAttraction);
+
+
 router.delete("/deletePost/:id", postsController.deletePost); // When a user click to delete an attraction, run this method in the postsController
 
 module.exports = router;

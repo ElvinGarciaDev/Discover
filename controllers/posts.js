@@ -9,9 +9,53 @@ const fetch = require('node-fetch')
 // We are exporting an object and all these are async methods.
 module.exports = {
 
-  // When someone goes to the add a new attraction just render the addAttraction.ejs page
-  getAttraction: (req, res) => {
-    res.render("addAttraction.ejs");
+  // When someone goes to the add a new attraction just render the addAttraction.ejs page and also get all the attractions they've created in the database
+  getAttraction: async (req, res) => {
+
+    try {
+
+      //go into the database, see if the logged in user has created any attractions for others to visit.
+      const local = await Post.find({user: req.user.id})
+
+      // Render the addAttraction page and all the attractions this user has created. We will also the user to edit any fields for any attractions they created
+      res.render("addAttraction.ejs", {user: req.user, local: local });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  // When somone wants to update a specific attraction
+  updateAttraction: async (req, res) => {
+    console.log(req.params.id)
+
+    try {
+
+      const local = await Post.findById(req.params.id); // .params.id getting the query paramater from the url
+      console.log(local)
+
+
+      res.render("updateAttraction.ejs", { local: local, user: req.user}); //Once a post that machtes this id is found. Send it to the post.ejs. Also send the comment array
+      
+    } catch (error) {
+      
+    }
+  },
+
+  // When a user wants to update an attraction they've created
+  updateLocalAttraction: async (req, res) => {
+
+    console.log(req.body)
+    try {
+      await Post.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
+        { _id: req.params.id },
+        {
+          $set: req.body // Once founded, just update any matching fileds
+        }
+      );
+      res.redirect(`/addAttraction`);
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   // When someone goes to search for an attraction, render the searchAttraction.ejs page
@@ -24,8 +68,11 @@ module.exports = {
     try {
       const posts = await Comment.find({ user: req.user.id, Complete: "false" }); // user: req.user.id will only show the attractions that the user has saved. On the profile page, we only want to show attractions that have not been completed
 
+      // For now go into the database, see if the logged in user has created any attractions for others to visit.
+      const local = await Post.find({user: req.user.id})
 
-      res.render("profile.ejs", { posts: posts, user: req.user });
+
+      res.render("profile.ejs", { posts: posts, user: req.user, local: local });
     } catch (err) {
       console.log(err);
     }
@@ -99,7 +146,7 @@ module.exports = {
         Latitude: latitude
       });
       console.log("Post has been added!");
-      res.redirect("/profile");
+      res.redirect("/addAttraction");
     } catch (err) {
       console.log(err);
     }
@@ -162,6 +209,5 @@ module.exports = {
       res.redirect("/profile");
     }
   },
-
 
 };

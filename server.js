@@ -71,3 +71,30 @@ app.use("/bookmarkAttraction", bookmarkAttraction) // For any routes that use th
 app.listen(process.env.PORT, () => {
   console.log("Server is running, you better catch it!");
 });
+
+const Comment = require("./models/Post")
+
+app.put("/:id", async (req, res) => {
+
+  console.log(req.body)
+  console.log("hello")
+
+  // Loop through the object that came in and delete any keys that are empty. This prevents any fields that were left empty in the form not be updated to empty fields in the database
+  Object.keys(req.body).forEach(key => {
+    if (req.body[key] === null || req.body[key] === undefined || req.body[key] === '') {
+        delete req.body[key]
+    }
+})
+
+  try {
+    await Comment.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
+      { _id: req.body.postID},
+      {
+        $set: req.body // Once founded, just update any matching fileds
+      }
+    );
+    res.redirect(`/profile`);
+  } catch (err) {
+    console.log(err);
+  }
+})
