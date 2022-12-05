@@ -11,7 +11,7 @@ const connectDB = require("./config/database"); // Holds our Database connect
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 
-const bookmarkAttraction = require("./routes/bookmarkAttraction") // Bring in the routes comments
+const bookmarkAttractionRoutes = require("./routes/bookmarkAttraction") // Bring in the routes comments
 
 // Axios???
 const axios = require('axios');
@@ -64,8 +64,8 @@ app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes); // If any '/' route come in. Use the mainRoutes file
-app.use("/post", postRoutes); // If any /post routes come in. Use the postRoutes
-app.use("/bookmarkAttraction", bookmarkAttraction) // For any routes that use the /comment go to this router
+app.use("/post", postRoutes); // If any /post routes come in. Use the postRoutes. When user is viewing a specific bookmarked attraction
+app.use("/bookmarkAttraction", bookmarkAttractionRoutes) // For any routes that use the /bookmarkAttraction go to this router. When a user is searching for attractions or bookmarks an attraction
 
 //Server Running
 app.listen(process.env.PORT, () => {

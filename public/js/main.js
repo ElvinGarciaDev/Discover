@@ -17,7 +17,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
   } catch (error) {}
 
   try {
-    const response = await fetch(`bookmarkAttraction/${zipCode}`);
+    const response = await fetch(`/bookmarkAttraction/${zipCode}`);
     const data = await response.json();
 
     //This is to place attractions created by the user into the DOM
@@ -112,7 +112,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
 
       // Send a POST request to the server and save the attraction
       try {
-        const response = await fetch(`addAttraction`, {
+        const response = await fetch(`/bookmarkAttraction/addAttraction`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
