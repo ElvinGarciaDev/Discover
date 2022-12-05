@@ -1,10 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
-const Post = require("../models/Post");
 
-const Comment = require("../models/BookmarkAttraction")
-
-const fetch = require('node-fetch')
-
+// Bring in the model so we can talk to the database. This holds all the bookmarked attractions
+const bookmarkedAttractionModel = require("../models/BookmarkAttraction")
 
 // We are exporting an object and all these are async methods.
 module.exports = {
@@ -13,7 +10,7 @@ module.exports = {
   // Render the profile/pending page. Go to the database and see if user has any bookmarked attractions. If so, send it to the profile.ejs to render
   getProfile: async (req, res) => {
     try {
-      const posts = await Comment.find({ user: req.user.id, Complete: "false" }); // user: req.user.id will only show the attractions that the user has saved. On the profile page, we only want to show attractions that have not been completed
+      const posts = await bookmarkedAttractionModel.find({ user: req.user.id, Complete: "false" }); // user: req.user.id will only show the attractions that the user has saved. On the profile page, we only want to show attractions that have not been completed
 
       res.render("profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
@@ -27,7 +24,7 @@ module.exports = {
     try {
 
       // Go to the database, grab all the completed attractions by the logged in user
-      const posts = await Comment.find({ user: req.user.id, Complete: "true" })
+      const posts = await bookmarkedAttractionModel.find({ user: req.user.id, Complete: "true" })
 
       res.render("completedAttractions.ejs", {posts: posts, user: req.user})
 
@@ -40,7 +37,7 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       // Post is the schema for a gernal post
-      const post = await Comment.findById(req.params.id); // .params.id getting the query paramater from the url
+      const post = await bookmarkedAttractionModel.findById(req.params.id); // .params.id getting the query paramater from the url
 
 
       res.render("post.ejs", { post: post, user: req.user}); //Once a post that machtes this id is found. Send it to the post.ejs. Also send the comment array
@@ -56,7 +53,7 @@ module.exports = {
 
     console.log(req.body, "hello")
     try {
-      await Comment.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
+      await bookmarkedAttractionModel.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
         { _id: req.params.id },
         {
           $set: { Review: req.body.review, Star: req.body.star}, // Update the empty Review string in the DB to what the users review is. And also update the star field in mongoDB
@@ -71,7 +68,7 @@ module.exports = {
   // User has the ability to mark an attraction as complete by clicking the check mark
   completeAttraction: async (req, res) => {
     try {
-      await Comment.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
+      await bookmarkedAttractionModel.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
         { _id: req.params.id },
         {
           $set: { Complete: "true" }, // Update from false to true
@@ -87,7 +84,7 @@ module.exports = {
     try {
 
       // Find post by id
-      let post = await Comment.findById({ _id: req.params.id });
+      let post = await bookmarkedAttractionModel.findById({ _id: req.params.id });
 
       // Delete image from cloudinary. Not all attractions will have a cloudinary id. Those bookmarked from travel-advisor dont. 
       let cloud = await cloudinary
@@ -98,7 +95,7 @@ module.exports = {
       }
       
       // Delete post from db
-      await Comment.remove({ _id: req.params.id });
+      await bookmarkedAttractionModel.remove({ _id: req.params.id });
       res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");

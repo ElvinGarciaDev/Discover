@@ -23,11 +23,6 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  Complete: {
-    type: String,
-    required: true,
-    default: 'false'
-  },
   Zipcode: {
     type: String,
     required: true,

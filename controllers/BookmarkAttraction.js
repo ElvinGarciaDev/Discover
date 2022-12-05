@@ -1,9 +1,7 @@
 // When a request of /searchActivity/bookmarkAttraction comes in, the user is searching for attractions
 
-
-const Comment = require("../models/BookmarkAttraction") // Bring in the comments model
-const Attraction = require("../models/Post")
-
+const bookmarkModel = require("../models/BookmarkAttraction") // Bring in the comments model
+const localUploadModel = require("../models/localUpload")
 
 // We are exporting an object and all these are async methods.
 module.exports = {
@@ -18,7 +16,7 @@ module.exports = {
 
     // Go to the database and grab any attractions that users have created with a matching zipcode
     try {
-      const attraction = await Attraction.find({ Zipcode: req.params.zipcode });
+      const attraction = await localUploadModel.find({ Zipcode: req.params.zipcode });
       
       // Respond back to the browser
       res.json(attraction)
@@ -35,7 +33,7 @@ module.exports = {
 
 
       // Use the BookmarkAttraction schema to create a document and save it to mongoDB
-      await Comment.create({
+      await bookmarkModel.create({
 
         // Get the data that came from the fetch and use it to create a document in MongoDB 
         Attraction: req.body.Attraction,

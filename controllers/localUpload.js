@@ -1,5 +1,5 @@
 const cloudinary = require("../middleware/cloudinary");
-const Post = require("../models/Post");
+const localUploadModel = require("../models/localUpload");
 
 const Comment = require("../models/BookmarkAttraction")
 
@@ -15,7 +15,7 @@ module.exports = {
     try {
 
       //go into the database, see if the logged in user has created any attractions for others to visit.
-      const local = await Post.find({user: req.user.id})
+      const local = await localUploadModel.find({user: req.user.id})
 
       // Render the addAttraction page and all the attractions this user has created. We will also the user to edit any fields for any attractions they created
       res.render("addAttraction.ejs", {user: req.user, local: local });
@@ -30,7 +30,7 @@ module.exports = {
 
     try {
 
-      const local = await Post.findById(req.params.id); // .params.id getting the query paramater from the url
+      const local = await localUploadModel.findById(req.params.id); // .params.id getting the query paramater from the url
       console.log(local)
 
 
@@ -50,7 +50,7 @@ module.exports = {
     try {
 
       // Bring in the attraction from MongoDB so we can compare it to the form the user submitted
-      const local = await Post.findById(req.params.id)
+      const local = await localUploadModel.findById(req.params.id)
       
       // If the address or zip code from the MongoDB stored documnet have a different value than the address coming in from the form
       // We need to update the address and GPS coordinates so we can send the correct points to our map
@@ -66,7 +66,7 @@ module.exports = {
         let latitude = obj.results[0].lat
 
         // Once we have the coordinates of the new address we can update the document in MongoDB
-        await Post.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
+        await localUploadModel.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
           { _id: req.params.id },
           {
             $set: req.body, // Once founded, just update any matching fileds
@@ -77,7 +77,7 @@ module.exports = {
 
       }else { // The user does not need to update the address, so gps coordinates can stay the same.
 
-        await Post.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
+        await localUploadModel.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
           { _id: req.params.id },
           {
               set: req.body // Once founded, just update any matching fileds
@@ -110,7 +110,7 @@ module.exports = {
       const result = await cloudinary.uploader.upload(req.file.path);
 
       // Use the Post schema to create a document and save it to mongoDB
-      await Post.create({
+      await localUploadModel.create({
 
         Attraction: req.body.title,
         Address: req.body.address,
