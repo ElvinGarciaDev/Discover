@@ -37,7 +37,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
       )
       .join("")}`;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 
   // Travel-adviser api
@@ -54,9 +54,9 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
       }
     );
     const data = await response.json();
-    console.log(data)
+    console.log(data);
 
-    // Save 
+    // Save
 
     // Filter the array that came back from the fetch request. Take out any elements that have undefined or "" values
     let arr = data.data.filter((element, index) => {
@@ -86,7 +86,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
       )
       .join("")}`;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 
   // Select the button that saves the attraction
@@ -105,10 +105,14 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
       let img = element.parentNode.parentNode.childNodes[1].src;
 
       // get the latitude and longitude from the dataset. We will need the coordinates because we want to show a map of the attraction location
-      let latitude = element.parentNode.parentNode.childNodes[3].childNodes[3].dataset.latitude
-      let longitude = element.parentNode.parentNode.childNodes[3].childNodes[3].dataset.longitude
+      let latitude =
+        element.parentNode.parentNode.childNodes[3].childNodes[3].dataset
+          .latitude;
+      let longitude =
+        element.parentNode.parentNode.childNodes[3].childNodes[3].dataset
+          .longitude;
 
-      console.log(latitude, longitude)
+      console.log(latitude, longitude);
 
       // Send a POST request to the server and save the attraction
       try {
@@ -121,7 +125,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
             Image: img,
             Description: description,
             Longitude: longitude,
-            Latitude: latitude
+            Latitude: latitude,
           }),
         });
 
@@ -130,7 +134,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
         element.innerText = "Saved";
         element.classList.add("btnSuccess"); // Add class to turn button background green
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     });
   });
@@ -146,10 +150,7 @@ window.onscroll = function () {
 };
 
 function scrollFunction() {
-  if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
-  ) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
@@ -195,7 +196,6 @@ function backToTop() {
 //   // set latitudeNum(value) {
 //   //   this._latitudeNum = value
 //   // }
-
 
 //   // Method gets value from the DOM
 //   valueFromDom(id) {
@@ -260,7 +260,6 @@ function backToTop() {
 //   // Call the getCoordinatesPair, this will call the zippopotam api which will find the cordinate pair for the current zip code.
 //   attraction.getCoordinatesPair()
 
-
 //   // Call the getLocalAttractions()
 //   // attraction.getLocalAttractions()
 
@@ -268,7 +267,5 @@ function backToTop() {
 //   // attraction._latitudeNum = 200
 
 //   console.log(attraction)
-
-
 
 // })
