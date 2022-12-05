@@ -26,12 +26,10 @@ module.exports = {
 
   // When somone wants to update a specific attraction. Go to the database grab that specific attraction and show the updateAttraction.ejs
   updateAttraction: async (req, res) => {
-    console.log(req.params.id)
 
     try {
 
       const local = await localUploadModel.findById(req.params.id); // .params.id getting the query paramater from the url
-      console.log(local)
 
 
       res.render("updateAttraction.ejs", { local: local, user: req.user}); //Once a post that machtes this id is found. Send it to the post.ejs. Also send the comment array
@@ -80,7 +78,7 @@ module.exports = {
         await localUploadModel.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
           { _id: req.params.id },
           {
-              set: req.body // Once founded, just update any matching fileds
+            $set: req.body // Once founded, just update any matching fileds
           }
         );
       }
@@ -124,7 +122,6 @@ module.exports = {
         Longitude: longitude,
         Latitude: latitude
       });
-      console.log("Post has been added!");
       res.redirect("/addAttraction");
     } catch (err) {
       console.log(err);

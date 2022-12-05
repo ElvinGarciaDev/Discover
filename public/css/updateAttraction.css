@@ -159,7 +159,7 @@ table {
     margin: .4em 0; 
 }
 
-#update_user .form-group input[type="text"],
+#update_user .form-group input[type="text"], #description,
 #add_user .form-group input[type="text"] {
     border: 1px solid var(--border);
     width: 95%;
@@ -216,7 +216,7 @@ table {
     background: #b4b4b4;
 }
 
-#update_user .form-group .btn,
+#update_user .form-group .btn, 
 #add_user .form-group .btn {
     width: 95%;
     padding: .9em 1em;
@@ -230,7 +230,7 @@ table {
     margin-left: 15px;
 }
 
-#update_user .form-group .btn:hover,
+#update_user .form-group .btn:hover, 
 #add_user .form-group .btn:hover {
     background-color: var(--dark);
     color: var(--border);

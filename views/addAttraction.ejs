@@ -35,7 +35,7 @@
                   <div class="col-md-7 col-md-push-5">
                     <div class="booking-cta">
                       <h1 id="headingLead">Add An Attraction</h1>
-                      <p>Nobody knows the city better the the people who actually live in it. Know an attraction you might think others will enjoy? add it to our collection so others can interact with it.
+                      <p>Nobody knows the city better the the people who actually live in it, know an attraction you might think others will enjoy? add it to our collection so others can interact with it.
                       </p>
                     </div>
                   </div>
@@ -44,13 +44,13 @@
                       <form action="/localUpload/createPost" enctype="multipart/form-data" method="POST">
                         <div class="form-group">
                           <span class="form-label">Attraction Name</span>
-                          <input type="text" class="form-control" id="title" name="title" placeholder="Enter a name for your attraction">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Enter a name for your attraction" required>
                         </div>
                         <div class="row">
                           <div class="mb-1">
                             <div class="form-group">
                               <span for="address" class="form-label">Address</span>
-                              <textarea class="form-control" id="address" name="address"></textarea>
+                              <textarea class="form-control" id="address" name="address" placeholder="e.g. 200 Technology Square" required></textarea>
                             </div>
                           </div>
                           <div class="mb-1">
@@ -64,13 +64,13 @@
                           <div class="mb-1">
                             <div class="form-group">
                               <span for="description" class="form-label">Description</span>
-                              <textarea class="form-control" id="description" name="description"></textarea>
+                              <textarea class="form-control" id="description" name="description" placeholder="Enter a description for your attraction" required></textarea>
                             </div>
                           </div>
                           <div class="col-sm-4">
                             <div class="form-group">
-                              <span for="zipcode" class="form-label">Zipcode</span>
-                              <input class="form-control" id="zipcode" name="zipcode" placeholder="ZipCode">
+                              <span for="zipcode" class="form-label">Zip code</span>
+                              <input class="form-control" id="zipcode" name="zipcode" placeholder="Zip code" required>
         
                             </div>
                           </div>
