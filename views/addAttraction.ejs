@@ -43,7 +43,7 @@
                   </div>
                   <div class="col-md-4 col-md-pull-7">
                     <div class="booking-form">
-                      <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+                      <form action="/localUpload/createPost" enctype="multipart/form-data" method="POST">
                         <div class="form-group">
                           <span class="form-label">Attraction Name</span>
                           <input type="text" class="form-control" id="title" name="title" placeholder="Enter a name for your attraction">
@@ -121,7 +121,7 @@
 
 
 
-                      <a href="/updateAttraction/<%= local[i].id%>"><button class="btn btn-primary btnDelete" type="button">Update</button></a>
+                      <a href="/localUpload/<%= local[i].id%>"><button class="btn btn-primary btnDelete" type="button">Update</button></a>
 
                     </div>
                   </div>

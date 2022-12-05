@@ -8,6 +8,11 @@ const Attraction = require("../models/Post")
 // We are exporting an object and all these are async methods.
 module.exports = {
 
+    // When someone goes to search for an attraction, render the searchAttraction.ejs page
+    getSearchAttraction: (req, res) => {
+      res.render("searchAttraction.ejs")
+    },
+
   // Go to the database and get any attractions created by users who match a zipcode the current user entred. 
   getAttractions: async (req, res) => {
 

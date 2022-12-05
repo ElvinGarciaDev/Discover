@@ -12,6 +12,8 @@ const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 
 const bookmarkAttractionRoutes = require("./routes/bookmarkAttraction") // Bring in the routes comments
+const localUploadRoutes = require("./routes/localUpload") // Bring in the routes comments
+
 
 // Axios???
 const axios = require('axios');
@@ -66,6 +68,7 @@ app.use(flash());
 app.use("/", mainRoutes); // If any '/' route come in. Use the mainRoutes file
 app.use("/post", postRoutes); // If any /post routes come in. Use the postRoutes. When user is viewing a specific bookmarked attraction
 app.use("/bookmarkAttraction", bookmarkAttractionRoutes) // For any routes that use the /bookmarkAttraction go to this router. When a user is searching for attractions or bookmarks an attraction
+app.use("/localUpload", localUploadRoutes) //Users can create/upload any attractions.
 
 //Server Running
 app.listen(process.env.PORT, () => {

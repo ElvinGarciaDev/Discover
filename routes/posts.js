@@ -10,13 +10,9 @@ router.get("/:id", ensureAuth, postsController.getPost); //You can grab the quer
 // the route is example: http://localhost:8000/post/637531bdb674a3719be5932d . When you click to go to a post directly it sends a get request because
 // it's in a <a> tag
 
-router.post("/createPost", upload.single("file"), postsController.createPost);
-
 router.put("/reviewAttraction/:id", postsController.reviewAttraction); // When someone completes an attraction they will get the chance to review that attraction
 
 router.put("/completeAttraction/:id", postsController.completeAttraction); // When a user click to mark the attraction as complete, run this method in the postsController
-
-router.put("/updateAttraction/:id", postsController.updateLocalAttraction);
 
 
 router.delete("/deletePost/:id", postsController.deletePost); // When a user click to delete an attraction, run this method in the postsController
