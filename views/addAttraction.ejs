@@ -121,7 +121,18 @@
 
 
 
+                      <!--Button that takes user to this specific attraction they've uploaded. Here they'll be able to update the attraction-->
                       <a href="/localUpload/<%= local[i].id%>"><button class="btn btn-primary btnDelete" type="button">Update</button></a>
+
+
+                      <!--Using method override to send a delete request to the server. User can delete any attractions they've uploaded-->
+                      <form
+                        class="col-2 mt-2"
+                        action="/localUpload/<%= local[i].id%>?_method=DELETE"
+                        method="POST"
+                      >
+                        <a href="#"><button class="btn btn-primary btnDelete" type="submit">Delete</button></a>
+                      </form>
 
                     </div>
                   </div>

@@ -129,5 +129,29 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+
+  // Users have the option to delete any attractions they've uploaded
+  deleteLocalAttraction: async (req, res) => {
+
+    try {
+
+      // Find post by id
+      let post = await localUploadModel.findById({ _id: req.params.id });
+
+      // Delete image from cloudinary. Not all attractions will have a cloudinary id. Those bookmarked from travel-advisor dont. 
+      let cloud = await cloudinary
+
+      // if the attraction in mongoDB contains a cloudinary ID it means a user updoad the attraction. So remove the img from cloudinary
+      if(cloud) {
+        cloud.uploader.destroy(post.cloudinaryId); // This deletes it from cloudinary becuase we no longer need it
+      }
+      
+      // Delete post from db
+      await localUploadModel.remove({ _id: req.params.id });
+      res.redirect("/addAttraction");
+    } catch (err) {
+      res.redirect("/addAttraction");
+    }
   }
 };

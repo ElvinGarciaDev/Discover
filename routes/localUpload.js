@@ -15,6 +15,9 @@ router.get("/:id", ensureAuth, localUploadController.updateAttraction)
 // Users have the option to change fields on the updateAttraction.ejs form
 router.put("/updateAttraction/:id", localUploadController.updateLocalAttraction);
 
+// If user who uploaded an attraction wants to delete it
+router.delete("/:id", localUploadController.deleteLocalAttraction);
+
 
 
 module.exports = router;
