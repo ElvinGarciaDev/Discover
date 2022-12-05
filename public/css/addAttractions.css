@@ -146,4 +146,8 @@
 	/* margin-right: 2rem;
 	margin-bottom: 2rem; */
 	margin: 2rem auto;
-  }
+}
+
+.bi-pencil, .bi-trash {
+	margin-right: 10px;
+}
