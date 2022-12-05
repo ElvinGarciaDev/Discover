@@ -89,6 +89,7 @@ module.exports = {
       // Delete image from cloudinary. Not all attractions will have a cloudinary id. Those bookmarked from travel-advisor dont. 
       let cloud = await cloudinary
 
+      // Do not assume the documnet in MongoDB has a cloudinaryId. Without this piece of code you woudn't be able to remove the attraction
       // if the attraction in mongoDB contains a cloudinary ID it means a user updoad the attraction. So remove the img from cloudinary
       if(cloud) {
         cloud.uploader.destroy(post.cloudinaryId); // This deletes it from cloudinary becuase we no longer need it
