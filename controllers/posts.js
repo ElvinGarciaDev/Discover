@@ -51,7 +51,6 @@ module.exports = {
   //When someone completes an attraction they will get the chance to review that attraction
   reviewAttraction: async (req,res) => {
 
-    console.log(req.body, "hello")
     try {
       await bookmarkedAttractionModel.findOneAndUpdate( // Go into the database, find an attraction that matches this ID and update it. 
         { _id: req.params.id },
