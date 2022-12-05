@@ -10,7 +10,6 @@
 	right: 0;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
-	border: 1px solid red;
 }
 
 #booking {
@@ -18,7 +17,6 @@
 	background-image: url("/imgs/background.jpg");
 	background-size: cover;
 	background-position: center;
-	border: 1px solid green;
 }
 
 #booking::before {
