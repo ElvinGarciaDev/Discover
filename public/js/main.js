@@ -21,7 +21,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
     const data = await response.json();
 
     //This is to place attractions created by the user into the DOM
-    activities.innerHTML += `${data
+    activities.innerHTML = `${data
       .map(
         (item) =>
           `<div class="card" style="width: 35rem;">
