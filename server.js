@@ -15,13 +15,6 @@ const bookmarkAttractionRoutes = require("./routes/bookmarkAttraction") // Bring
 const localUploadRoutes = require("./routes/localUpload") // Bring in the routes comments
 
 
-// Axios???
-const axios = require('axios');
-const fetch = require('node-fetch')
-
-
-
-
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
