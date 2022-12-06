@@ -31,6 +31,10 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, // This is how we tie a post to a specific user
     ref: "User",
   },
+  userName: {
+    type: String, // This is how we tie a post to a specific user
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

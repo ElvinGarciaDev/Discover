@@ -31,7 +31,7 @@ document.querySelector("#button-addon2").addEventListener("click", async () => {
                             <h5 class="card-title" >${item.Attraction}</h5>
                             <p class="card-text" data-latitude="${item.Latitude}" data-longitude="${item.Longitude}">${item.Address}</p>
                             <p class="card-text">${item.Description}</p>
-                            <p class="card-text">Added By User</p>
+                            <p class="card-text">Added By user: ${item.userName}</p>
                             <button type="button" class="btn btn-primary">Save Attraction</button>
                         </div>
                     </div>`

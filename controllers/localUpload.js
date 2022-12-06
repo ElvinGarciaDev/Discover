@@ -117,6 +117,7 @@ module.exports = {
         Description: req.body.description,
         Zipcode: req.body.zipcode,
         user: req.user.id,
+        userName: req.user.userName,
         
         // coordinates received from api call above. We will need the coordinates to display the map on each attraction
         Longitude: longitude,
