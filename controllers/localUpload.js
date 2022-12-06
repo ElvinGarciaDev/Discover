@@ -15,7 +15,7 @@ module.exports = {
     try {
 
       //go into the database, see if the logged in user has created any attractions for others to visit.
-      const local = await localUploadModel.find({user: req.user.id})
+      const local = await localUploadModel.find({user: req.user.id}).sort({ createdAt: "desc" }).lean(); // Sort the array so that the newer post is first in line
 
       // Render the addAttraction page and all the attractions this user has created. We will also the user to edit any fields for any attractions they created
       res.render("addAttraction.ejs", {user: req.user, local: local });
